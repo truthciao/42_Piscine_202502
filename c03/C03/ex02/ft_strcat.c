@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 17:03:56 by yshi              #+#    #+#             */
-/*   Updated: 2025/02/25 11:21:08 by yshi             ###   ########.fr       */
+/*   Created: 2025/02/25 11:22:50 by yshi              #+#    #+#             */
+/*   Updated: 2025/02/25 13:30:51 by yshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strcat(char *dest, char *src)
 {
-	unsigned int	i;
+	char	*orignal;
 
-	i = 0;
-	if (n == 0)
-	{
-		return (0);
-	}
-	while (i < n - 1 && s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i ++;
-	}
-	return (s1[i] - s2[i]);
+	orignal = dest;
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;
+	*dest = '\0';
+	return (orignal);
 }
 //
 //#include <stdio.h>
@@ -33,7 +28,8 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 //{
 //	char	s1[] = "ABA";
 //	char	s2[] = "ACEK";
-//	unsigned	n = 1;
-//	printf("My output:\t%d\n", ft_strncmp(s1, s2, n));
-//	printf("Strncmp output:\t%d\n", strncmp(s1, s2, n));
+//	char	s3[] = "ABA";
+//	char	s4[] = "ACEK";
+//	printf("My output:\t%s\n", ft_strcat(s1, s2));
+//	printf("Strcat output:\t%s\n", strcat(s3, s4));
 //}

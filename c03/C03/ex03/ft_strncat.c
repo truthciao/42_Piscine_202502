@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 17:03:56 by yshi              #+#    #+#             */
-/*   Updated: 2025/02/25 11:21:08 by yshi             ###   ########.fr       */
+/*   Created: 2025/02/25 13:34:21 by yshi              #+#    #+#             */
+/*   Updated: 2025/02/25 14:23:00 by yshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
+	char			*orignal;
 	unsigned int	i;
 
+	orignal = dest;
 	i = 0;
-	if (n == 0)
-	{
-		return (0);
-	}
-	while (i < n - 1 && s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i ++;
-	}
-	return (s1[i] - s2[i]);
+	while (*dest)
+		dest++;
+	while (src[i] != '\0' && i < nb)
+		*dest ++ = src[i++];
+	*dest = '\0';
+	return (orignal);
 }
 //
 //#include <stdio.h>
@@ -33,7 +30,12 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 //{
 //	char	s1[] = "ABA";
 //	char	s2[] = "ACEK";
-//	unsigned	n = 1;
-//	printf("My output:\t%d\n", ft_strncmp(s1, s2, n));
-//	printf("Strncmp output:\t%d\n", strncmp(s1, s2, n));
+//	int		nb = 0;
+//	char	s3[50];
+//	char	s4[50];
+//	
+//	strcpy(s3, s1);
+//	strcpy(s4, s2);
+//	printf("My output:\t%s\n", ft_strncat(s1, s2, nb));
+//	printf("Strcat output:\t%s\n", strncat(s3, s4, nb));
 //}
