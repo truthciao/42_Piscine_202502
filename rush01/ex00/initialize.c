@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_program_name.c                            :+:      :+:    :+:   */
+/*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 17:29:34 by yshi              #+#    #+#             */
-/*   Updated: 2025/02/28 10:43:47 by yshi             ###   ########.fr       */
+/*   Created: 2025/03/02 14:54:00 by yshi              #+#    #+#             */
+/*   Updated: 2025/03/02 14:54:05 by yshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+#define SIZE 4
 
-int	main(int argc, char **argv)
+int	initialize_views(int *views, char *str)
 {
 	int	i;
 
-	(void)argc;
 	i = 0;
-	while (argv[0][i])
+	while (*str)
 	{
-		write(1, &argv[0][i], 1);
+		if (*str >= '0' && *str <= '9')
+			views[i++] = *str - '0';
+		str ++;
+	}
+	return (i);
+}
+
+int	initialize_map(int map[SIZE][SIZE])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < SIZE)
+	{
+		j = 0;
+		while (j < SIZE)
+			map[i][j++] = 0;
 		i ++;
 	}
-	write(1, "\n", 1);
+	return (1);
 }

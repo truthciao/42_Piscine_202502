@@ -29,7 +29,8 @@ int	is_valid_base(char *base)
 		return (0);
 	while (base[i])
 	{
-		if (base[i] == '+' || base[i] == '-')
+		if (base[i] == '+' || base[i] == '-' ||
+			(ch >= '\t' && ch <= '\r') || ch == ' ')
 			return (0);
 		j = i + 1;
 		while (base[j])
@@ -94,24 +95,104 @@ int	ft_atoi_base(char *str, char *base)
 	}
 	return (num * sign);
 }
-//
-//#include <stdio.h>
-//int	main(void)
-//{
-//	char *base10 = "0123456789";
-//	char *base2 = "01";
-//	char *base8	= "poneyvif";
-//	char *base16 = "0123456789ABCDEF";
-//	char *base_0 = "";
-//	char *base_1 = "123435";
-//	char *base_2 = "23+45";
-//	
-//	char *str10 = "   +----356 21";
-//	char *str2 = "  \t011111112353"; //127
-//	char *str16 = " ---22uooo"; //34
-//
-//	printf("base10 test:%s\t|%d\n", str10, ft_atoi_base(str10, base10));
-//	printf("base2 test:%s\t|%d\n", str2, ft_atoi_base(str2, base2));
-//    printf("base16 test:%s\t\t|%d\n", str16, ft_atoi_base(str16, base16));
-//	printf("base invaild test:%s\t|%d\n", str10, ft_atoi_base(str2, base_0));
-//}
+
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	char *base10 = "0123456789";
+// 	char *base2 = "01";
+// 	char *base8	= "poneyvif";
+// 	char *base16 = "0123456789ABCDEF";
+// 	char *base_0 = "";
+// 	char *base_1 = "12343\n5";
+// 	char *base_2 = "23+45";
+	
+// 	char *str10 = "   +----356 21";
+// 	char *str2 = "  \t011111112353"; //127
+// 	char *str16 = " ---22uooo"; //34
+
+// 	printf("base10 test:%s\t|%d\n", str10, ft_atoi_base(str10, base10));
+// 	printf("base2 test:%s\t|%d\n", str2, ft_atoi_base(str2, base2));
+//    	printf("base16 test:%s\t\t|%d\n", str16, ft_atoi_base(str16, base16));
+// 	printf("base invaild test:%s\t|%d\n", str10, ft_atoi_base(str2, base_0));
+// 	printf("base invaild test:%s\t|%d\n", str10, ft_atoi_base(str2, base_1));
+// }
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	
+	//char testnum[] = " +123";
+
+	//int testint = ft_atoi_base(testnum, "0123456789");
+	//printf("|%d|", testint);
+	char	num1[] = "-123";
+	char	num2[] = "+123";
+	char	num3[] = "	 123";
+	char	num4[] = " +123ddd456";
+	char	num5[] = "\t\t2147483647";
+	char 	num6[] = " -2147483648";
+	char	num7[] = "123456789123456789";
+	char	num8[] = "-----123";
+	char	num9[] = "0";
+
+	char	binum1[] = "0";
+	char	binum2[] = "01";
+	char	binum3[] = "10";
+	char	binum4[] = "11";
+	char	binum5[] = "100";
+	char	binum6[] = "101";
+	char	binum7[] = "110";
+
+
+	char	base10[] = "0123456789";
+	//char	base16[] = "0123456789abcdef";
+	char	base2[] = "01";
+	//char	base2bis[] = "!\\";
+
+	int a = atoi(num1);
+	int b = atoi(num2);
+	int c = atoi(num3);
+	int d = atoi(num4);
+	int e = atoi(num5);
+	int f = atoi(num6);
+	int g = atoi(num7);
+	int h = atoi(num8);
+	int i = atoi(num9);
+	int z = ft_atoi_base(num1, base10);
+	int y = ft_atoi_base(num2, base10);
+	int x = ft_atoi_base(num3, base10);
+	int w = ft_atoi_base(num4, base10);
+	int v = ft_atoi_base(num5, base10);
+	int u = ft_atoi_base(num6, base10);
+	int t = ft_atoi_base(num7, base10);
+	int s = ft_atoi_base(num8, base10);
+	int r = ft_atoi_base(num9, base10);
+
+	printf("|%d|%d|%d|%d|%d|%d|%d|%d|%d|\n", a,b,c,d,e,f,g,h,i);
+	printf("|%d|%d|%d|%d|%d|%d|%d|%d|%d|\n", z,y,x,w,v,u,t,s,r);
+
+	int q = ft_atoi_base(binum1, base2);
+	int p = ft_atoi_base(binum2, base2);
+	int o = ft_atoi_base(binum3, base2);
+	int n = ft_atoi_base(binum4, base2);
+	int m = ft_atoi_base(binum5, base2);
+	int l = ft_atoi_base(binum6, base2);
+	int k = ft_atoi_base(binum7, base2);
+	printf("|%d|%d|%d|%d|%d|%d|%d|\n", q,p,o,n,m,l,k);
+
+	char badbase1[] = "123456789abdecf+";
+	char badbase2[] = "01\n23456789";
+	char badbase3[] = "";
+	char badbase4[] = "sneakyrepeat";
+	char badbase5[] = "asdlkfj00";
+
+	int try1 = ft_atoi_base(num1, badbase1);
+	int try2 = ft_atoi_base(num2, badbase2);
+	int try3 = ft_atoi_base(num3, badbase3);
+	int try4 = ft_atoi_base(num4, badbase4);
+	int try5 = ft_atoi_base(num5, badbase5);
+	printf("Badbases : |%d|%d|%d|%d|%d|\n", try1, try2, try3, try4, try5);	
+}
