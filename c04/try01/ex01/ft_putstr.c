@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 17:40:13 by yshi              #+#    #+#             */
-/*   Updated: 2025/03/05 09:31:14 by yshi             ###   ########.fr       */
+/*   Created: 2025/02/25 17:51:06 by yshi              #+#    #+#             */
+/*   Updated: 2025/02/26 15:26:36 by yshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_strlen(char *str)
-{
-	int	len;
+#include <unistd.h>
 
-	len = 0;
-	while (*str++)
-		len ++;
-	return (len);
+void	ft_putstr(char *str)
+{
+	while (*str)
+	{
+		write(1, str, 1);
+		str ++;
+	}
 }
-//
-//#include <stdio.h>
-//int main(){
-//	char *str = "Bonjour";
-//	printf("%d", ft_strlen(str));
-//}
